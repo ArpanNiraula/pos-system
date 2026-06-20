@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>POS Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+    --bg: #0b1220;
+    --panel: #111827;
+    --border: #1f2937;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --accent: #2563eb;
+    --success: #22c55e;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* CARD */
+.card {
+    width: 340px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 32px 28px 24px 28px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* TITLE */
+.title {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    outline: none;
+    margin-bottom: 16px;
+    font-size: 16px;
+    letter-spacing: 0.25em;
+    text-align: center;
+    transition: border-color 0.15s ease;
+}
+
+input::placeholder {
+    letter-spacing: normal;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+input:focus {
+    border-color: #4b5563;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: var(--success);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+button:hover {
+    background-color: #16a34a;
+}
+
+button:active {
+    background-color: #15803d;
+}
+
+/* FOOT NOTE */
+.note {
+    margin-top: 24px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #4b5563;
+    text-align: center;
+    text-transform: uppercase;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+    <div class="title">TERMINAL LOGIN</div>
+
+    <input id="pin" type="password" placeholder="Enter PIN" maxlength="6">
+
+    <button onclick="login()">LOGIN</button>
+
+    <div class="note">Powered By Arpan Codes</div>
+</div>
+
+<script>
+
+const API = "http://localhost:5000/api";
+
+async function login() {
+
+    const pin = document.getElementById("pin").value.trim();
+
+    if (!pin) return alert("Enter PIN");
+
+    if (pin === "0000") {
+        localStorage.setItem("token", "MASTER");
+        window.location.href = "pos.html";
+        return;
+    }
+
+    try {
+
+        const res = await fetch(API + "/pin-auth/login-pin", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ pin })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.message);
+
+        localStorage.setItem("token", data.token);
+
+        window.location.href = "pos.html";
+
+    } catch (e) {
+        alert(e.message);
+    }
+}
+
+document.getElementById("pin").addEventListener("keydown", e => {
+    if (e.key === "Enter") login();
+});
+
+</script>
+
+</body>
+</html>

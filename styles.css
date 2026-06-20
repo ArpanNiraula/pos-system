@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+}
+
+body {
+    margin: 0;
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+/* LOGIN */
+.login {
+    width: 320px;
+    margin: 120px auto;
+    background: #111827;
+    padding: 20px;
+    border: 1px solid #1f2937;
+}
+
+.login h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #0b1220;
+    border: 1px solid #1f2937;
+    color: #e5e7eb;
+    outline: none;
+}
+
+input:focus {
+    border-color: #3b82f6;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3b82f6;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+/* POS LAYOUT */
+.pos {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* TOP BAR */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #111827;
+    border-bottom: 1px solid #1f2937;
+}
+
+.top input {
+    width: 60%;
+    margin: 0;
+}
+
+.top button {
+    width: auto;
+    padding: 8px 12px;
+    background: #ef4444;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    flex: 1;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* CART TABLE */
+.items {
+    background: #111827;
+    border: 1px solid #1f2937;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #1f2937;
+    font-size: 13px;
+}
+
+th {
+    text-align: left;
+    background: #0b1220;
+    color: #9ca3af;
+}
+
+/* PANEL */
+.panel {
+    background: #111827;
+    border: 1px solid #1f2937;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panel p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* TOTAL BOX */
+.panel b {
+    font-size: 18px;
+    color: #22c55e;
+}
+
+/* PAY BUTTON */
+#pay {
+    background: #22c55e;
+    font-size: 16px;
+}
+
+#pay:hover {
+    background: #16a34a;
+}
