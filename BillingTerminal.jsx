@@ -8,11 +8,7 @@ export default function BillingTerminal() {
 
     const inputRef = useRef(null);
 
-    const mockProducts = [
-        { id: "1", sku: "SKU001", name: "Coca Cola 500ml", price: 120 },
-        { id: "2", sku: "SKU002", name: "Wai Wai Noodles", price: 25 },
-        { id: "3", sku: "SKU003", name: "Milk 1L", price: 180 }
-    ];
+    
 
     const subtotal = useMemo(() => {
         return items.reduce((sum, i) => sum + i.qty * i.price, 0);
