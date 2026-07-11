@@ -9,7 +9,7 @@ body {
     color: #e5e7eb;
 }
 
-/* LOGIN */
+
 .login {
     width: 320px;
     margin: 120px auto;
@@ -51,14 +51,14 @@ button:hover {
     background: #2563eb;
 }
 
-/* POS LAYOUT */
+
 .pos {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/* TOP BAR */
+
 .top {
     display: flex;
     justify-content: space-between;
@@ -79,7 +79,7 @@ button:hover {
     background: #ef4444;
 }
 
-/* GRID */
+
 .grid {
     display: grid;
     grid-template-columns: 2.2fr 1fr;
@@ -88,7 +88,7 @@ button:hover {
     padding: 10px;
 }
 
-/* CART TABLE */
+
 .items {
     background: #111827;
     border: 1px solid #1f2937;
@@ -112,7 +112,7 @@ th {
     color: #9ca3af;
 }
 
-/* PANEL */
+
 .panel {
     background: #111827;
     border: 1px solid #1f2937;
@@ -125,16 +125,14 @@ th {
 .panel p {
     margin: 6px 0;
     font-size: 14px;
-}
+}
 
-/* TOTAL BOX */
 .panel b {
     font-size: 18px;
     color: #22c55e;
 }
-
-/* PAY BUTTON */
-#pay {
+
+#pay 
     background: #22c55e;
     font-size: 16px;
 }
