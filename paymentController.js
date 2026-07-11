@@ -1,11 +1,7 @@
 const axios = require('axios');
 const db = require('../db');
 
-/*
-|--------------------------------------------------------------------------
-| eSewa Verification
-|--------------------------------------------------------------------------
-*/
+
 exports.verifyEsewa = async (req, res) => {
     try {
         const {
@@ -21,8 +17,7 @@ exports.verifyEsewa = async (req, res) => {
             });
         }
 
-        // In real integration, eSewa uses redirect verification or SOAP/API
-        // This is structured for production adaptation
+        
 
         const invoice = await db.query(
             `SELECT * FROM invoices WHERE id = $1`,
@@ -70,11 +65,7 @@ exports.verifyEsewa = async (req, res) => {
     }
 };
 
-/*
-|--------------------------------------------------------------------------
-| Khalti Verification
-|--------------------------------------------------------------------------
-*/
+
 exports.verifyKhalti = async (req, res) => {
     try {
         const { token, amount, invoice_id } = req.body;
@@ -93,7 +84,7 @@ exports.verifyKhalti = async (req, res) => {
             },
             {
                 headers: {
-                    Authorization: `Key ${process.env.KHALTI_SECRET_KEY}`
+                    
                 }
             }
         );
