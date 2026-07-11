@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>POS SYSTEM</title>
 
 <style>
-/* page setup */
+
 body {
     margin: 0;
     padding: 0;
@@ -20,7 +20,7 @@ body {
     height: 100vh;
 }
 
-/* layout */
+
 .left {
     width: 60%;
     padding: 20px;
@@ -38,8 +38,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-/* headings */
+
 h3 {
     margin: 0 0 12px 0;
     font-size: 15px;
@@ -47,7 +46,7 @@ h3 {
     color: #94a3b8;
 }
 
-/* form sections */
+
 .section {
     background-color: #282f3b;
     border: 1px solid #38404e;
@@ -59,7 +58,7 @@ h3 {
     align-items: center;
 }
 
-/* inputs */
+
 input, select {
     background-color: #1f232b;
     border: 1px solid #475569;
@@ -89,8 +88,7 @@ select {
 input:focus, select:focus {
     border-color: #3b82f6;
 }
-
-/* buttons */
+
 button {
     background-color: #3b82f6;
     color: #ffffff;
@@ -107,7 +105,7 @@ button:hover {
     background-color: #2563eb;
 }
 
-/* delete button */
+
 .btn-delete {
     background: none;
     border: none;
@@ -126,7 +124,7 @@ button:hover {
     text-decoration: underline;
 }
 
-/* tables */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -154,7 +152,7 @@ tr:last-child td {
     border-bottom: none;
 }
 
-/* total area */
+
 .left h3:has(#total) {
     font-size: 22px;
     color: #ffffff;
@@ -166,7 +164,7 @@ tr:last-child td {
     padding-top: 15px;
 }
 
-/* pay button */
+
 button[onclick="pay()"] {
     background-color: #10b981;
     width: 100%;
@@ -179,7 +177,7 @@ button[onclick="pay()"]:hover {
     background-color: #059669;
 }
 
-/* stock list */
+
 #stockList {
     margin-bottom: 20px;
 }
@@ -196,7 +194,7 @@ button[onclick="pay()"]:hover {
     align-items: center;
 }
 
-/* qr section */
+
 #qrBox {
     display: none;
     text-align: center;
@@ -230,7 +228,7 @@ button[onclick="pay()"]:hover {
     background-color: #334155;
 }
 
-/* print area */
+
 #printArea {
     display: none;
 }
@@ -304,7 +302,7 @@ button[onclick="pay()"]:hover {
 let stock = [];
 let cart = [];
 
-// LocalStorage Auto-backup core wrappers
+
 function saveBackup() {
     localStorage.setItem("pos_stock_backup", JSON.stringify(stock));
     localStorage.setItem("pos_cart_backup", JSON.stringify(cart));
@@ -322,12 +320,12 @@ function loadBackup() {
     renderCart();
 }
 
-// Automatically backup data explicitly when browser page is closed or left
+
 window.addEventListener("beforeunload", function () {
     saveBackup();
 });
 
-/* STOCK */
+
 function addStock(){
 
     let name = document.getElementById("s_name").value;
@@ -348,7 +346,7 @@ function addStock(){
     saveBackup(); // Instant backup trigger
 }
 
-/* DELETE STOCK ITEM */
+
 function deleteStock(id) {
     stock = stock.filter(s => s.id !== id);
     updateStock();
@@ -356,7 +354,7 @@ function deleteStock(id) {
     saveBackup();
 }
 
-/* UPDATE STOCK UI */
+
 function updateStock(){
 
     let div = document.getElementById("stockList");
@@ -374,7 +372,7 @@ function updateStock(){
     });
 }
 
-/* UPDATE SELECT */
+
 function updateSelect(){
 
     let sel = document.getElementById("sell_select");
@@ -387,7 +385,7 @@ function updateSelect(){
     });
 }
 
-/* SELL */
+
 function sellItem(){
 
     let i = document.getElementById("sell_select").value;
@@ -397,17 +395,17 @@ function sellItem(){
     if(!stock[i]) return alert("Select a valid item");
     if(stock[i].qty < qty) return alert("Not enough stock");
 
-    // Deduct stock quantity
+    
     stock[i].qty -= qty;
 
-    // Push into checkout cart
+    
     cart.push({
         name: stock[i].name,
         qty: qty,
         price: stock[i].price
     });
 
-    // Clean up the database: completely drop any item that hits 0 units
+    
     stock = stock.filter(s => s.qty > 0);
 
     updateStock();
@@ -416,7 +414,7 @@ function sellItem(){
     saveBackup(); // Instant backup trigger
 }
 
-/* CART */
+
 function renderCart(){
 
     let tbody = document.getElementById("cart");
@@ -439,14 +437,13 @@ function renderCart(){
 
     document.getElementById("total").innerText = total;
 }
-
-/* PAY */
+
 function pay(){
 
     document.getElementById("qrBox").style.display = "block";
 }
 
-/* DONE → PRINT */
+
 function done(){
 
     let printContent = document.getElementById("printArea");
